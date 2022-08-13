@@ -23,34 +23,35 @@
  * Именно в этом порядке друзья стоят в очереди изначально.
  */
 
-// let queue = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"];
+let queue = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"];
 
-//  var doubleColaTests = [
-//     {
-//         parameters: [1],
-//         expectedResult: "Sheldon"
-//     },
-//     {
-//         parameters: [6],
-//         expectedResult: "Sheldon"
-//     },
-//     {
-//         parameters: [1802],
-//         expectedResult: "Penny"
-//     }
-// ];
+ var doubleColaTests = [
+    {
+        parameters: [1],
+        expectedResult: "Sheldon"
+    },
+    {
+        parameters: [6],
+        expectedResult: "Sheldon"
+    },
+    {
+        parameters: [1802],
+        expectedResult: "Penny"
+    }
+];
 
 
-// function doubleCola(n) {
-//     for (let i=0; i<n-1; i++) {
-//         queue.push(queue[0], queue[0]);
-//         queue.shift();
-//     }
+function doubleCola(n) {
+    for (let i=0; i<n-1; i++) {
+        queue.push(queue[0], queue[0]);
+        queue.shift();
+    }
 
-//     return queue[0];
-// }
+    return queue[0];
+}
 
 // doubleColaTests.forEach(element => console.log(doubleCola(element.parameters[0])+' '+'expectedResult:'+element.expectedResult));
+
 
 
 /**
@@ -99,4 +100,60 @@ function prettyYear(y) {
         return StringNewYear;
 }
 
-prettyYearTests.forEach(element => console.log(prettyYear(+element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
+// prettyYearTests.forEach(element => console.log(prettyYear(+element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
+
+
+/**
+ * Слишком длинные слова
+ *
+ * Иногда некоторые слова вроде «localization» или «internationalization» настолько длинны,
+ * что их весьма утомительно писать много раз в каком либо тексте.
+ *
+ * Будем считать слово слишком длинным, если его длина строго больше 10 символов.
+ * Все слишком длинные слова можно заменить специальной аббревиатурой.
+ *
+ * Эта аббревиатура строится следующим образом: записывается первая и последняя буква слова,
+ * а между ними — количество букв между первой и последней буквой (в десятичной системе счисления и без ведущих нулей).
+ *
+ * Таком образом, «localization» запишется как «l10n», а «internationalization» как «i18n».
+ *
+ * Вам предлагается автоматизировать процесс замены слов на аббревиатуры.
+ * При этом все слишком длинные слова должны быть заменены аббревиатурой, а слова, не являющиеся слишком длинными,
+ * должны остаться без изменений.
+ */
+
+ var longWordTests = [
+    {
+        parameters: ["localization"],
+        expectedResult: "l10n"
+    },
+    {
+        parameters: ["internationalization"],
+        expectedResult: "i18n"
+    },
+    {
+        parameters: ["word"],
+        expectedResult: "word"
+    },
+    {
+        parameters: [""],
+        expectedResult: ""
+    },
+    {
+        parameters: ["1"],
+        expectedResult: "1"
+    }
+];
+
+
+function longWord(word) {
+    let abbr;
+    if (word.length<10) {
+        return word
+    } else {
+        abbr = word[0] + (word.length-2) + word[word.length-1];
+        return abbr;
+    }
+}
+
+longWordTests.forEach(element => console.log(longWord(element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
