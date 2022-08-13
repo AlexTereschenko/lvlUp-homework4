@@ -1,2 +1,2 @@
-# Name
-short description
+# Homework4
+Few homework training tasks
