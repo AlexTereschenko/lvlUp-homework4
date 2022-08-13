@@ -23,31 +23,80 @@
  * Именно в этом порядке друзья стоят в очереди изначально.
  */
 
-let queue = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"];
+// let queue = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"];
 
- var doubleColaTests = [
-    {
-        parameters: [1],
-        expectedResult: "Sheldon"
+//  var doubleColaTests = [
+//     {
+//         parameters: [1],
+//         expectedResult: "Sheldon"
+//     },
+//     {
+//         parameters: [6],
+//         expectedResult: "Sheldon"
+//     },
+//     {
+//         parameters: [1802],
+//         expectedResult: "Penny"
+//     }
+// ];
+
+
+// function doubleCola(n) {
+//     for (let i=0; i<n-1; i++) {
+//         queue.push(queue[0], queue[0]);
+//         queue.shift();
+//     }
+
+//     return queue[0];
+// }
+
+// doubleColaTests.forEach(element => console.log(doubleCola(element.parameters[0])+' '+'expectedResult:'+element.expectedResult));
+
+
+/**
+ * Красивый год
+ *
+ * А знали ли Вы забавный факт о том, что 2013 год является первым годом после далекого 1987 года,
+ * в котором все цифры различны?
+ *
+ * Теперь же Вам предлагается решить следующую задачу: задан номер года, найдите наименьший номер года,
+ * который строго больше заданного и в котором все цифры различны.
+ *
+ * Входные данные
+ * В единственной строке задано целое число y (1000 ≤ y ≤ 9000) — номер года.
+ *
+ * Выходные данные
+ * Выведите единственное целое число — минимальный номер года, который строго больше y, в котором все цифры различны.
+ * Гарантируется, что ответ существует.
+ */
+
+var prettyYearTests = [{
+        parameters: ["1987"],
+        expectedResult: 2013
     },
     {
-        parameters: [6],
-        expectedResult: "Sheldon"
+        parameters: ["2013"],
+        expectedResult: 2014
     },
     {
-        parameters: [1802],
-        expectedResult: "Penny"
+        parameters: ["8796"],
+        expectedResult: 8901
     }
 ];
 
 
-function doubleCola(n) {
-    for (let i=0; i<n-1; i++) {
-        queue.push(queue[0], queue[0]);
-        queue.shift();
-    }
+function prettyYear(y) {
+    let nextYear = y+1;
 
-    return queue[0];
+    StringNewYear = String(nextYear);
+
+        if (StringNewYear[0] !== StringNewYear[1] && StringNewYear[0] !== StringNewYear[2] && StringNewYear[0] !== StringNewYear[3] && StringNewYear[1] !== StringNewYear[2] && StringNewYear[1] !== StringNewYear[3] && StringNewYear[2] !== StringNewYear[3]) {
+            return StringNewYear;
+        } else {
+            prettyYear(y+1);
+        };
+
+        return StringNewYear;
 }
 
-doubleColaTests.forEach(element => console.log(doubleCola(element.parameters[0])+' '+'expectedResult:'+element.expectedResult));
+prettyYearTests.forEach(element => console.log(prettyYear(+element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
