@@ -25,7 +25,7 @@
 
 let queue = ["Sheldon", "Leonard", "Penny", "Rajesh", "Howard"];
 
- var doubleColaTests = [
+var doubleColaTests = [
     {
         parameters: [1],
         expectedResult: "Sheldon"
@@ -50,7 +50,9 @@ function doubleCola(n) {
     return queue[0];
 }
 
-// doubleColaTests.forEach(element => console.log(doubleCola(element.parameters[0])+' '+'expectedResult:'+element.expectedResult));
+console.log('"Double Cola"');
+doubleColaTests.forEach(element => console.log(doubleCola(element.parameters[0])+' '+'expectedResult:'+element.expectedResult));
+console.log('');
 
 
 
@@ -100,7 +102,10 @@ function prettyYear(y) {
         return StringNewYear;
 }
 
-// prettyYearTests.forEach(element => console.log(prettyYear(+element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
+console.log('"Pretty year"');
+prettyYearTests.forEach(element => console.log(prettyYear(+element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
+console.log('');
+
 
 
 /**
@@ -122,7 +127,7 @@ function prettyYear(y) {
  * должны остаться без изменений.
  */
 
- var longWordTests = [
+var longWordTests = [
     {
         parameters: ["localization"],
         expectedResult: "l10n"
@@ -156,9 +161,11 @@ function longWord(word) {
     }
 }
 
+console.log('"Long words"');
+longWordTests.forEach(element => console.log(longWord(element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
+console.log('');
 
 
-// longWordTests.forEach(element => console.log(longWord(element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
 
 /**
  * Выборы
@@ -186,7 +193,7 @@ function longWord(word) {
  * Выведите единственное число — номер кандидата, победившего в выборах. Кандидаты нумеруются с единицы.
  */
 
- var electionsTest = [
+var electionsTest = [
     {
         parameters: ["1 2 3", "2 3 1", "1 2 1"],
         expectedResult: 2
@@ -198,9 +205,36 @@ function longWord(word) {
 ];
 
 
-function elections() {
-  
+function elections(m, n) {
+    let townFirstTurnVictorsIndex=[];
+
+    for (let i=0; i<n; i++) {
+        let townVotes = m[i].split(' ');
+
+        for(let j=0; j<townVotes.length;j++) {
+            townVotes[j] = Number(townVotes[j]);
+        }
+
+        townFirstTurnVictorsIndex.push(townVotes.indexOf(Math.max(...townVotes))+1);
+    }
+
+    let result = townFirstTurnVictorsIndex.reduce(function(acc, el) {
+        acc[el] = (acc[el] || 0) + 1;
+        return acc;
+    }, {});
+
+    let votesForCandidats = Object.values(result);
+    let numberOfVotesForVictor = Math.max(...votesForCandidats);
+    let IndexOfVictor = votesForCandidats.indexOf(numberOfVotesForVictor);
+    let candidatNumbers = Object.keys(result);
+    let victorNumber = candidatNumbers[IndexOfVictor];
+    
+    return victorNumber;
 }
+
+console.log('"Election"');
+electionsTest.forEach(element => console.log(elections(element.parameters, element.parameters.length) + ' ' + 'expectedResult:' + element.expectedResult));
+console.log('');
 
 
 
@@ -227,7 +261,7 @@ function elections() {
  * Выведите результат обработки данного слова.
  */
 
- var capsLockTests = [
+var capsLockTests = [
     {
         parameters: ["cAPS"],
         expectedResult: "Caps"
@@ -271,4 +305,6 @@ function capsLock(str) {
     return str;
 }
 
+console.log('"Capslock"');
 capsLockTests.forEach(element => console.log(capsLock(element.parameters[0]) + ' ' + 'expectedResult:' + element.expectedResult));
+console.log('');
